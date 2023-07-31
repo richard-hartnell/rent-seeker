@@ -15,7 +15,7 @@ reply_text = "Hi! I'm clown_b0t, part of the circus. I roam Reddit trying to cle
              "2. Clowns are generally very kind and well-intentioned people.\n \n" \
              "3. Clowns are only *pretending* they are completely stupid.\n \n" \
              "I'm a bot! If anything's wrong, just reply to this comment." \
-             "[Dario Fo](https://en.wikipedia.org/wiki/Dario_Fo), " + "the only clown to win a Nobel Prize in Literature." + "https://www.youtube.com/watch?v=TqKfwC70YZI")
+             "[Dario Fo](https://en.wikipedia.org/wiki/Dario_Fo), " + "the only clown to win a Nobel Prize in Literature." + "https://www.youtube.com/watch?v=TqKfwC70YZI"
 
 # Create the Reddit instance
 reddit = praw.Reddit('bot1')
