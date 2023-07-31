@@ -6,7 +6,7 @@ import os
 
 #inits
 commentIterator = 0
-searchTerm = "i hope your own bot programming is going great"
+searchTerm = "meatbag"
 subredditOfInterest = 'pythonforengineers'
 
 # the reply
@@ -21,9 +21,8 @@ reply_text = "Hi! I'm clown_b0t, part of the circus. I roam Reddit trying to cle
 reddit = praw.Reddit('bot1')
 
 # and login
-with open("creds.txt", "r") as f:
-    print(list(f))
-#reddit.login(REDDIT_USERNAME, REDDIT_PASS)
+# with open("creds.txt", "r") as f:
+#     reddit.login(f[0], f[1])
 
 # Have we run this code before? If not, create an empty list
 if not os.path.isfile("posts_replied_to.txt"):
