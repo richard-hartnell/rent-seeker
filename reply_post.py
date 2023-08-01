@@ -27,7 +27,7 @@ subs = ['news',
         'technology',
         'wallstreetbets',
         'unexpected',
-        'therewasanattempt',
+        # 'therewasanattempt',
         'travel',
         'facepalm',
         'mildlyinfuriating',
@@ -40,7 +40,7 @@ reply_text = "Hi! Circus performer here. This account is for roaming around Redd
              "2. Clowns are generally very kind and well-intentioned people.\n \n" \
              "3. Clowns are only *pretending* they are completely stupid.\n \n" \
              "-- \n \n" \
-             "^For a clownish rabbit hole, please enjoy this play written by [Dario Fo](https://en.wikipedia.org/wiki/Dario_Fo), " + "the only clown to win a Nobel Prize in Literature." + "https://www.youtube.com/watch?v=TqKfwC70YZI"
+             "^(For a clownish rabbit hole, please enjoy this play written by Dario Fo, the only clown to win a Nobel Prize in Literature. https://www.youtube.com/watch?v=TqKfwC70YZI )"
 test_comment = "Test comment."
 
 # Create the Reddit instance
@@ -64,21 +64,21 @@ while True:
                     commentIterator += 1
                     thisComment = reddit.comment(comment.id)
                     if comment.id not in comments_found:
-                        print("Comment " + str(commentIterator) + ": " + comment.body.lower())
-                        prompt = input("Clownish reply? \n ('y' to comment, 'n' to never comment, anything else to skip): ")
-                        if prompt == "y":
-                            thisComment.reply(reply_text)
-                            print("Comment left.")
-                            comments_found.append(comment.id)
-                        if prompt == "n":
-                            comments_found.append(comment.id)
-                            print("Comment ignored.")
-                        else:
-                            continue
+                        if 'clown_b0t' not in comment.author:
+                            print("Comment " + str(commentIterator) + ": " + comment.body.lower())
+                            print("Author: " + str(comment.author))
+                            prompt = input("Clownish reply? \n ('y' to comment, 'n' to never comment, anything else to skip): ")
+                            if prompt == "y":
+                                thisComment.reply(reply_text)
+                                print("Comment left.")
+                                comments_found.append(comment.id)
+                            if prompt == "n":
+                                comments_found.append(comment.id)
+                                print("Comment ignored.")
+                            else:
+                                continue
                 else:
                     pass
-
-        # Write our updated list back to the file
         with open("comments_found.txt", "w") as f:
             for comment_id in comments_found:
                 f.write(comment_id + "\n")
