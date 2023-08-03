@@ -3,6 +3,7 @@ import praw
 import pdb
 import re
 import os
+import time
 
 #inits
 commentIterator = 0
@@ -13,13 +14,13 @@ subs = ['news',
         'askreddit',
         'gaming',
         'videos',
-        'memes',
+        # 'memes',
         'books',
         'IAmA',
         'nottheonion',
         'explainlikeimfive',
         'lifeprotips',
-        'gifs',
+        # 'gifs',
         'documentaries',
         'tifu',
         'personalfinance',
@@ -62,16 +63,16 @@ while True:
         for submission in subreddit.hot(limit=20):
             time.sleep(2)
             commentIterator = 0
-            print("\n Scanning post in /r/" + subreddit.display_name + ": " + submission.title)
             submission.comments.replace_more(limit=3)
             for comment in submission.comments.list():
-                time.sleep(2)
+                # time.sleep(2)
                 if commentIterator <= 12 and (str(searchTerm) in str(comment.body.lower())):
                     commentIterator += 1
                     thisComment = reddit.comment(comment.id)
                     time.sleep(2)
                     if comment.id not in comments_found:
                         if str(comment.author) != 'clown_b0t':
+                            print("\n From post in /r/" + subreddit.display_name + ": " + submission.title)
                             print("Comment " + str(commentIterator) + ": " + comment.body.lower())
                             if str(comment.author) in authors_found:
                                 print('Author found')
