@@ -15,28 +15,29 @@ subs = ['news',
         'music',
         'movies',
         'pics',
-        # 'politics',
-        # 'worldnews',
         'askreddit',
         'gaming',
         'videos',
-        # 'memes',
         'books',
         'IAmA',
         'nottheonion',
         'explainlikeimfive',
         'lifeprotips',
-        # 'gifs',
         'documentaries',
         'tifu',
         'personalfinance',
         'technology',
-        # 'wallstreetbets',
         'unexpected',
-        # 'therewasanattempt',
         'travel',
         'facepalm',
         'mildlyinfuriating',
+        # ban list below here
+        # 'politics',
+        # 'worldnews',
+        # 'memes',
+        # 'gifs',
+        # 'wallstreetbets',
+        # 'therewasanattempt',
         ]
 comments_found = []
 reply_text = "Hi! Circus performer here. Just dipping in to clear up this too-frequent comparison between clowns and stupid people:\n \n" \
@@ -58,6 +59,11 @@ with open("authors_found.txt", "r") as g:
     authors_found = authors_found.split("\n")
     authors_found = list(filter(None, authors_found))
 
+with open("skip_threads.txt", "r") as h:
+    skip_threads = h.read()
+    skip_threads = skip_threads.split("\n")
+    skip_threads = list(filter(None, skip_threads))
+
 while True:
     for sub in subs:
         subreddit = reddit.subreddit(sub)
@@ -66,6 +72,8 @@ while True:
             commentIterator = 0
             submission.comments.replace_more(limit=3)
             for comment in submission.comments.list():
+                if submission.id in skip_threads:
+                    break
                 # time.sleep(2)
                 if commentIterator <= 12 and (str(searchTerm) in str(comment.body.lower())):
                     commentIterator += 1
@@ -78,7 +86,7 @@ while True:
                             if str(comment.author) in authors_found:
                                 print('**************************Author found')
                             print("Author: " + str(comment.author))
-                            prompt = input("Clownish reply? \n ('y' to comment, 'n' to never comment, anything else to skip): ")
+                            prompt = input("Clownish reply? \n ('y' to reply, 'n' to ignore comment, '!' to ignore post, anything else to skip): ")
                             if prompt == "y":
                                 try:
                                     thisComment.reply(reply_text)
@@ -91,6 +99,9 @@ while True:
                             if prompt == "n":
                                 comments_found.append(comment.id)
                                 print("Comment ignored.")
+                            if prompt == "!":
+                                skip_threads.append(submission.id)
+                                print("Post ignored.")
                             else:
                                 continue
                 else:
@@ -101,3 +112,6 @@ while True:
         with open("authors_found.txt", "w") as g:
             for author in authors_found:
                 g.write(author + "\n")
+        with open("skip_threads.txt", "w") as h:
+            for thread in skip_threads:
+                h.write(thread + "\n")
