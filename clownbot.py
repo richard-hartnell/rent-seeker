@@ -9,8 +9,7 @@ print("Running.")
 
 commentIterator = 0
 searchTerm = "clown"
-subs = ['news',
-        'funny',
+subs = ['funny',
         'todayilearned',
         'music',
         'movies',
@@ -23,6 +22,9 @@ subs = ['news',
         'nottheonion',
         'explainlikeimfive',
         'lifeprotips',
+        'futurology',
+        'history',
+        'nosleep',
         'documentaries',
         'tifu',
         'personalfinance',
@@ -33,6 +35,7 @@ subs = ['news',
         'mildlyinfuriating',
         # ban list below here
         # 'politics',
+        # 'news',
         # 'worldnews',
         # 'memes',
         # 'gifs',
@@ -46,7 +49,6 @@ reply_text = "Hi! Circus performer here. Just dipping in to clear up this too-fr
              "3. Clowns are only *pretending* they are completely stupid.\n \n" \
              "-- \n \n" \
              "^(For a clownish rabbit hole, please enjoy this play written by Dario Fo, the only clown to win a Nobel Prize in Literature. https://www.youtube.com/watch?v=TqKfwC70YZI )"
-test_comment = "Test comment."
 
 reddit = praw.Reddit('bot1')
 with open("comments_found.txt", "r") as f:
@@ -76,6 +78,8 @@ while True:
                     break
                 # time.sleep(2)
                 if commentIterator <= 12 and (str(searchTerm) in str(comment.body.lower())):
+                    if "class clown" in str(comment.body.lower):
+                        pass
                     commentIterator += 1
                     thisComment = reddit.comment(comment.id)
                     time.sleep(2)
