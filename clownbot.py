@@ -78,8 +78,8 @@ while True:
                     break
                 # time.sleep(2)
                 if commentIterator <= 12 and (str(searchTerm) in str(comment.body.lower())):
-                    if "class clown" in str(comment.body.lower):
-                        pass
+                    if "class clown" in str(comment.body.lower()):
+                        break
                     commentIterator += 1
                     thisComment = reddit.comment(comment.id)
                     time.sleep(2)
