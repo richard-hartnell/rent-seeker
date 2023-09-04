@@ -9,6 +9,7 @@ print("Running.")
 
 commentIterator = 0
 searchTerm = "clown"
+exempt_terms = ["class clown", "clowning on", "clowned on", "clownfish", "clown fish", "art the clown"]
 subs = ['funny',
         'todayilearned',
         'music',
@@ -78,8 +79,10 @@ while True:
                     break
                 # time.sleep(2)
                 if commentIterator <= 12 and (str(searchTerm) in str(comment.body.lower())):
-                    if "class clown" in str(comment.body.lower()):
-                        break
+                    for term in exempt_terms:
+                        if term in str(comment.body.lower()):
+                            print("Exempt comment skipped")
+                            break
                     commentIterator += 1
                     thisComment = reddit.comment(comment.id)
                     time.sleep(2)
