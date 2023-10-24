@@ -9,7 +9,13 @@ print("Running.")
 
 commentIterator = 0
 searchTerm = "clown"
-exempt_terms = ["class clown", "clowning on", "clowned on", "clownfish", "clown fish", "art the clown"]
+exempt_terms = ["class clown",
+                "clowning",
+                "clowned",
+                "clownfish",
+                "clown fish",
+                "art the clown"
+                ]
 subs = ['funny',
         'todayilearned',
         'music',
@@ -23,7 +29,6 @@ subs = ['funny',
         'nottheonion',
         'explainlikeimfive',
         'lifeprotips',
-        'futurology',
         'history',
         'nosleep',
         'documentaries',
@@ -35,6 +40,7 @@ subs = ['funny',
         'facepalm',
         'mildlyinfuriating',
         # ban list below here
+        # 'futurology',
         # 'politics',
         # 'news',
         # 'worldnews',
@@ -93,7 +99,7 @@ while True:
                             if str(comment.author) in authors_found:
                                 print('**************************Author found')
                             print("Author: " + str(comment.author))
-                            prompt = input("Clownish reply? \n ('y' to reply, 'n' to ignore comment, '!' to ignore post, anything else to skip): ")
+                            prompt = input("Clownish reply? \n ('y' to reply, 'n' to ignore comment, '!' to ignore post, 'd' to downvote and move on, anything else to skip): ")
                             if prompt == "y":
                                 try:
                                     thisComment.reply(reply_text)
@@ -106,6 +112,14 @@ while True:
                             if prompt == "n":
                                 comments_found.append(comment.id)
                                 print("Comment ignored.")
+                            if prompt == "d":
+                                try:
+                                    comment.downvote()
+                                    print("Downvoted and ignored.")
+                                    comments_found.append(comment.id)
+                                except Exception as e:
+                                    print(e)
+                                    comments_found.append(comment.id)
                             if prompt == "!":
                                 skip_threads.append(submission.id)
                                 print("Post ignored.")
