@@ -8,14 +8,15 @@ import time
 print("Running.")
 
 commentIterator = 0
-searchTerm = "clown"
-exempt_terms = ["class clown",
-                "clowning",
-                "clowned",
-                "clownfish",
-                "clown fish",
-                "art the clown"
-                ]
+searchTerms = ("the rent",
+               "rents",
+               "rent control",
+               "housing provider",
+               "free house",
+               "housing crisis",
+               "slumlord",
+               "slum lord",)
+exempt_terms = ["parents"]
 subs = ['funny',
         'todayilearned',
         'music',
@@ -37,25 +38,24 @@ subs = ['funny',
         'travel',
         'facepalm',
         'mildlyinfuriating',
-        # ban list below here
-        # 'futurology',
-        # 'technology',
-        # 'politics',
-        # 'news',
-        # 'videos',
-        # 'worldnews',
-        # 'memes',
-        # 'gifs',
-        # 'wallstreetbets',
-        # 'therewasanattempt',
+        # prospective ban list below here
+        'futurology',
+        'technology',
+        'politics',
+        'news',
+        'videos',
+        'worldnews',
+        'memes',
+        'gifs',
+        'wallstreetbets',
+        'therewasanattempt',
         ]
 comments_found = []
-reply_text = "Hi! Circus performer here. Just dipping in to clear up this too-frequent comparison between clowns and stupid people:\n \n" \
-             "1. Clowns are very diligent and work very hard at refining their art.\n \n"\
-             "2. Clowns are generally very kind and well-intentioned people.\n \n" \
-             "3. Clowns are only *pretending* they are completely stupid.\n \n" \
-             "-- \n \n" \
-             "^(For a clownish rabbit hole, please enjoy this play written by Dario Fo, the only clown to win a Nobel Prize in Literature. https://www.youtube.com/watch?v=TqKfwC70YZI )"
+reply_text = ""
+housing_provider_reply = ""
+property_tax_reply = ""
+rent_control_reply = ""
+free_housing_reply = ""
 
 reddit = praw.Reddit('bot1')
 with open("comments_found.txt", "r") as f:
@@ -81,25 +81,26 @@ while True:
             commentIterator = 0
             submission.comments.replace_more(limit=3)
             for comment in submission.comments.list():
+                comment_body = str(comment.body.lower())
                 if submission.id in skip_threads:
                     break
                 # time.sleep(2)
-                if commentIterator <= 12 and (str(searchTerm) in str(comment.body.lower())):
-                    for term in exempt_terms:
-                        if term in str(comment.body.lower()):
-                            print("Exempt comment skipped")
-                            break
+                if commentIterator <= 12 and any(term in comment_body for term in searchTerms): #here is where we are searching searchTerm in the comment body
+                    # for term in exempt_terms:
+                    #     if term in str(comment.body.lower()):
+                    #         print("Exempt comment skipped")
+                    #         break
                     commentIterator += 1
                     thisComment = reddit.comment(comment.id)
                     time.sleep(2)
                     if comment.id not in comments_found:
-                        if str(comment.author) != 'clown_b0t':
+                        if str(comment.author) != 'more_housing_co-ops':
                             print("\n From post in /r/" + subreddit.display_name + ": " + submission.title)
-                            print("Comment " + str(commentIterator) + ": " + comment.body.lower())
+                            print("Comment " + str(commentIterator) + ": " + comment_body)
                             if str(comment.author) in authors_found:
                                 print('**************************Author found')
                             print("Author: " + str(comment.author))
-                            prompt = input("Clownish reply? \n ('y' to reply, 'n' to ignore comment, '!' to ignore post, 'd' to downvote and move on, anything else to skip): ")
+                            prompt = input("Clown? \n: ") #TODO: change this prompt and give numbered responses for various replies
                             if prompt == "y":
                                 try:
                                     thisComment.reply(reply_text)
