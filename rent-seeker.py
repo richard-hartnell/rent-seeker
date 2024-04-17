@@ -18,6 +18,10 @@ searchTerms = ("the rent",
                "slum lord",)
 exempt_terms = ["parents"]
 subs = ['funny',
+        'aboringdystopia',
+        'lostgeneration',
+        'democraticsocialism',
+        'askaliberal',
         'todayilearned',
         'music',
         'movies',
@@ -86,10 +90,9 @@ while True:
                     break
                 # time.sleep(2)
                 if commentIterator <= 12 and any(term in comment_body for term in searchTerms): #here is where we are searching searchTerm in the comment body
-                    # for term in exempt_terms:
-                    #     if term in str(comment.body.lower()):
-                    #         print("Exempt comment skipped")
-                    #         break
+                    if any(term in comment_body for term in exempt_terms):
+                        print("Exempt comment skipped")
+                        break
                     commentIterator += 1
                     thisComment = reddit.comment(comment.id)
                     time.sleep(2)
