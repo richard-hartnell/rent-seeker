@@ -58,8 +58,9 @@ comments_found = []
 reply_text = ""
 housing_provider_reply = "Someone who buys housing at cost and returns it to the market for 2x the price isn't 'providing' anything."
 property_tax_reply = "Casual reminder that property tax usually only makes up around 10 percent of market-rate rent, compared to the ~fifty percent of rent that goes toward paying off the landlord's mortgage for them"
-rent_control_reply = ""
-free_housing_reply = ""
+rent_control_reply = "Most economists might argue against rent control, but if you actually read the most commonly cited anti-rent-control papers, they find that rent control typically protects tenants from displacement and reduces homelessness -- and that when net rent increases result, they come about from scalpers going elsewhere in the market to gouge unprotected tenants *worse*."
+free_housing_reply = "Landlords love to accuse housing advocates of trying to 'give away free housing' every time they suggest that landlords should pay their own purchase price and not charge 2x the real cost of housing."
+GDP_reply = "Another good place to note that exploding rent costs are included in GDP, even though nothing is produced by scalping a home."
 
 reddit = praw.Reddit('bot1')
 with open("comments_found.txt", "r") as f:
@@ -103,10 +104,46 @@ while True:
                             if str(comment.author) in authors_found:
                                 print('**************************Author found')
                             print("Author: " + str(comment.author))
-                            prompt = input("Clown? \n: ") #TODO: change this prompt and give numbered responses for various replies
-                            if prompt == "y":
+                            prompt = input("1: 'Housing provider' \n 2: 'Property tax' \n 3: 'Rent control doesn't work' \n 4: 'Free house' \n 5: 'GDP' \n n: No reply \n d: Downvote, no reply \n !: ignore thread \n c: Custom reply \n Action?: ") #TODO: change this prompt and give numbered responses for various replies
+                            if prompt == "1":
                                 try:
-                                    thisComment.reply(reply_text)
+                                    thisComment.reply(housing_provider_reply)
+                                    print("Comment left.")
+                                    comments_found.append(comment.id)
+                                    authors_found.append(str(comment.author))
+                                except Exception as e:
+                                    print(e)
+                                    comments_found.append(comment.id)
+                            if prompt == "2":
+                                try:
+                                    thisComment.reply(property_tax_reply)
+                                    print("Comment left.")
+                                    comments_found.append(comment.id)
+                                    authors_found.append(str(comment.author))
+                                except Exception as e:
+                                    print(e)
+                                    comments_found.append(comment.id)
+                            if prompt == "3":
+                                try:
+                                    thisComment.reply(rent_control_reply)
+                                    print("Comment left.")
+                                    comments_found.append(comment.id)
+                                    authors_found.append(str(comment.author))
+                                except Exception as e:
+                                    print(e)
+                                    comments_found.append(comment.id)
+                            if prompt == "4":
+                                try:
+                                    thisComment.reply(free_housing_reply)
+                                    print("Comment left.")
+                                    comments_found.append(comment.id)
+                                    authors_found.append(str(comment.author))
+                                except Exception as e:
+                                    print(e)
+                                    comments_found.append(comment.id)
+                            if prompt == "5":
+                                try:
+                                    thisComment.reply(GDP_reply)
                                     print("Comment left.")
                                     comments_found.append(comment.id)
                                     authors_found.append(str(comment.author))
@@ -121,6 +158,16 @@ while True:
                                     comment.downvote()
                                     print("Downvoted and ignored.")
                                     comments_found.append(comment.id)
+                                except Exception as e:
+                                    print(e)
+                                    comments_found.append(comment.id)
+                            if prompt == "c":
+                                custom_reply = input("Custom reply: ")
+                                try:
+                                    thisComment.reply(custom_reply)
+                                    print("Comment left.")
+                                    comments_found.append(comment.id)
+                                    authors_found.append(str(comment.author))
                                 except Exception as e:
                                     print(e)
                                     comments_found.append(comment.id)
