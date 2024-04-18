@@ -86,7 +86,7 @@ while True:
             commentIterator = 0
             submission.comments.replace_more(limit=3)
             for comment in submission.comments.list():
-                comment_body = str(comment.body.lower())
+                comment_body = str(comment.body.lower().encode('utf-8'))
                 if submission.id in skip_threads:
                     break
                 # time.sleep(2)
