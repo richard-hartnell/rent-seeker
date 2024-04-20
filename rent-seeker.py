@@ -12,6 +12,9 @@ searchTerms = ("the rent",
                "rents",
                "rent control",
                "housing provider",
+               "provide housing",
+               "providing housing",
+               "without landlords",
                "free house",
                "housing crisis",
                "slumlord",
@@ -62,6 +65,7 @@ rent_control_reply = "Most economists might argue against rent control, but if y
 free_housing_reply = "Landlords love to accuse housing advocates of trying to 'give away free housing' every time they suggest that landlords should pay their own purchase price and not charge 2x the real cost of housing."
 GDP_reply = "Another good place to note that exploding rent costs are included in GDP, even though nothing is produced by scalping a home."
 
+
 reddit = praw.Reddit('bot1')
 with open("comments_found.txt", "r") as f:
     comments_found = f.read()
@@ -90,7 +94,7 @@ while True:
                 if submission.id in skip_threads:
                     break
                 # time.sleep(2)
-                if commentIterator <= 12 and any(term in comment_body for term in searchTerms): #here is where we are searching searchTerm in the comment body
+                if commentIterator <= 12 and any(term in comment_body for term in searchTerms):
                     if any(term in comment_body for term in exempt_terms):
                         print("Exempt comment skipped")
                         break
@@ -104,7 +108,16 @@ while True:
                             if str(comment.author) in authors_found:
                                 print('**************************Author found')
                             print("Author: " + str(comment.author))
-                            prompt = input("1: 'Housing provider' \n 2: 'Property tax' \n 3: 'Rent control doesn't work' \n 4: 'Free house' \n 5: 'GDP' \n n: No reply \n d: Downvote, no reply \n !: ignore thread \n c: Custom reply \n Action?: ") #TODO: change this prompt and give numbered responses for various replies
+                            prompt = input("1:" + housing_provider_reply + "\n \
+                                           2:" + property_tax_reply + "\n \
+                                           3:" + rent_control_reply + "\n \
+                                           4:" + free_housing_reply + "\n \
+                                           5:" + GDP_reply + "\n \
+                                           n: No reply \n \
+                                           d: Downvote and ignore\n \
+                                           !: Ignore thread \n \
+                                           c: Custom Reply \n \
+                                           Action?: ")
                             if prompt == "1":
                                 try:
                                     thisComment.reply(housing_provider_reply)
