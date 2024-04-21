@@ -90,7 +90,7 @@ while True:
             commentIterator = 0
             submission.comments.replace_more(limit=3)
             for comment in submission.comments.list():
-                comment_body = str(comment.body.lower().encode('utf-8'))
+                comment_body = str(comment.body.lower()) #try .encode('utf-8') maybe
                 if submission.id in skip_threads:
                     break
                 # time.sleep(2)
@@ -103,21 +103,21 @@ while True:
                     time.sleep(2)
                     if comment.id not in comments_found:
                         if str(comment.author) != 'more_housing_co-ops':
-                            print("\n From post in /r/" + subreddit.display_name + ": " + submission.title)
-                            print("Comment " + str(commentIterator) + ": " + comment_body)
                             if str(comment.author) in authors_found:
                                 print('**************************Author found')
                             print("Author: " + str(comment.author))
-                            prompt = input("1:" + housing_provider_reply + "\n \
-                                           2:" + property_tax_reply + "\n \
-                                           3:" + rent_control_reply + "\n \
-                                           4:" + free_housing_reply + "\n \
-                                           5:" + GDP_reply + "\n \
-                                           n: No reply \n \
-                                           d: Downvote and ignore\n \
-                                           !: Ignore thread \n \
-                                           c: Custom Reply \n \
-                                           Action?: ")
+                            print("1: " + housing_provider_reply + "\n")
+                            print("2: " + property_tax_reply + "\n")
+                            print("3: " + rent_control_reply + "\n")
+                            print("4: " + free_housing_reply + "\n")
+                            print("5: " + GDP_reply + "\n")
+                            print("n: No reply \n")
+                            print("d: Downvote and ignore\n")
+                            print("!: Ignore thread \n")
+                            print("c: Custom Reply \n")
+                            print("\n From post in /r/" + subreddit.display_name + ": " + submission.title)
+                            print("Comment " + str(commentIterator) + ": " + comment_body)
+                            prompt = input("Action?: ")
                             if prompt == "1":
                                 try:
                                     thisComment.reply(housing_provider_reply)
