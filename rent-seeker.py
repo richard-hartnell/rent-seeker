@@ -177,10 +177,13 @@ while True:
                             if prompt == "c":
                                 custom_reply = input("Custom reply: ")
                                 try:
-                                    thisComment.reply(custom_reply)
-                                    print("Comment left.")
-                                    comments_found.append(comment.id)
-                                    authors_found.append(str(comment.author))
+                                    if custom_reply == "":
+                                        print("No reply left.")
+                                    else: 
+                                        thisComment.reply(custom_reply)
+                                        print("Comment left.")
+                                        comments_found.append(comment.id)
+                                        authors_found.append(str(comment.author))
                                 except Exception as e:
                                     print(e)
                                     comments_found.append(comment.id)
