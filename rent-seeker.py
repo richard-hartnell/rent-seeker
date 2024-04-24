@@ -58,13 +58,14 @@ subs = ['funny',
         'therewasanattempt',
         ]
 comments_found = []
-reply_text = ""
 housing_provider_reply = "Someone who buys housing at cost and returns it to the market for 2x the price isn't 'providing' anything."
 property_tax_reply = "Casual reminder that property tax usually only makes up around 10 percent of market-rate rent, compared to the ~fifty percent of rent that goes toward paying off the landlord's mortgage for them"
-rent_control_reply = "Most economists might argue against rent control, but if you actually read the most commonly cited anti-rent-control papers, they find that rent control typically protects tenants from displacement and reduces homelessness -- and that when net rent increases result, they come about from scalpers going elsewhere in the market to gouge unprotected tenants *worse*."
+rent_control_reply = "Most economists might argue against rent control, but when you ask them to explain their argument it's most often 'most economists don't like rent control.' If you actually read the most commonly cited anti-rent-control papers, they show renter protections shielding tenants from displacement, reducing homelessness, and making housing affordable again -- and that if/when net rent increases result, they come about from scalpers going elsewhere in the market to gouge unprotected tenants *worse*."
 free_housing_reply = "Landlords love to accuse housing advocates of trying to 'give away free housing' every time they suggest that landlords should pay their own purchase price and not charge 2x the real cost of housing."
 GDP_reply = "Another good place to note that exploding rent costs are included in GDP, even though nothing is produced by scalping a home."
-
+property_rights_reply = "Landlords frequently argue that no laws can/should affect what people can do with their private property, as if there aren't already laws on the books saying you can't stab someone with a knife even if it's *your* knife."
+wealth_redistribution_reply = "For some reason landlords love wealth redistribution when they're sucking working tenants' savings dry, but not if the wealth is to ever flow the other way."
+vienna_model_reply = "Vienna famously bought back swaths of scalped housing and successfully reduced rent by like 50 percent as a result. https://www.google.com/search?q=vienna+model"
 
 reddit = praw.Reddit('bot1')
 with open("comments_found.txt", "r") as f:
@@ -111,6 +112,8 @@ while True:
                             print("3: " + rent_control_reply + "\n")
                             print("4: " + free_housing_reply + "\n")
                             print("5: " + GDP_reply + "\n")
+                            print("6: " + property_rights_reply + "\n")
+                            print("7: " + wealth_redistribution_reply + "\n")
                             print("n: No reply \n")
                             print("d: Downvote and ignore\n")
                             print("!: Ignore thread \n")
