@@ -18,8 +18,10 @@ searchTerms = ("the rent",
                "free house",
                "housing crisis",
                "slumlord",
-               "slum lord",)
-exempt_terms = ["parents"]
+               "slum lord",
+               "landlord")
+exempt_terms = ["parents",
+                "currents",]
 subs = ['funny',
         'aboringdystopia',
         'lostgeneration',
@@ -57,6 +59,7 @@ subs = ['funny',
         'wallstreetbets',
         'therewasanattempt',
         ]
+
 comments_found = []
 housing_provider_reply = "Someone who buys housing at cost and returns it to the market for 2x the price isn't 'providing' anything."
 property_tax_reply = "Casual reminder that property tax usually only makes up around 10 percent of market-rate rent, compared to the ~fifty percent of rent that goes toward paying off the landlord's mortgage for them"
