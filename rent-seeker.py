@@ -71,6 +71,7 @@ without_LLs_reply = "Private landlords love to argue that without scalping, ther
 property_rights_reply = "Landlords frequently argue that no laws can/should affect what people can do with their private property, as if there aren't already laws on the books saying you can't stab someone with a knife even if it's *your* knife."
 wealth_redistribution_reply = "For some reason landlords love wealth redistribution when they're sucking working tenants' savings dry, but not if the wealth is to ever flow the other way."
 vienna_model_reply = "Vienna famously bought back swaths of scalped housing and successfully reduced rent by like 50 percent as a result. https://www.google.com/search?q=vienna+model"
+moms_pops_reply = "I don't think it matters much whether 10000 otherwise-affordable units are getting scalped for twice the price by two giant companies or by a couple thousand 'moms' and 'pops.'"
 
 reddit = praw.Reddit('bot1')
 with open("comments_found.txt", "r") as f:
@@ -121,8 +122,10 @@ while True:
                             print("7: " + wealth_redistribution_reply + "\n")
                             print("8: " + vienna_model_reply + "\n")
                             print("9: " + without_LLs_reply + "\n")
+                            print("0: " + moms_pops_reply + "\n")
                             print("n: No reply \n")
                             print("d: Downvote and ignore\n")
+                            print("u: Upvote and ignore\n")
                             print("!: Ignore thread \n")
                             print("c: Custom Reply \n")
                             print("\n From post in /r/" + subreddit.display_name + ": " + submission.title)
@@ -212,6 +215,14 @@ while True:
                             if prompt == "n":
                                 comments_found.append(comment.id)
                                 print("Comment ignored.")
+                            if prompt == "u":
+                                try:
+                                    comment.upvote()
+                                    print("Upvoted and ignored.")
+                                    comments_found.append(comment.id)
+                                except Exception as e:
+                                    print(e)
+                                    comments_found.append(comment.id)
                             if prompt == "d":
                                 try:
                                     comment.downvote()
