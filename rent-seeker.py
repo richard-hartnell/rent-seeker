@@ -72,6 +72,7 @@ property_rights_reply = "Landlords frequently argue that no laws can/should affe
 wealth_redistribution_reply = "For some reason landlords love wealth redistribution when they're sucking working tenants' savings dry, but not if the wealth is to ever flow the other way."
 vienna_model_reply = "Vienna famously bought back swaths of scalped housing and successfully reduced rent by like 50 percent as a result. https://www.google.com/search?q=vienna+model"
 moms_pops_reply = "I don't think it matters much whether 10000 otherwise-affordable units are getting scalped for twice the price by two giant companies or by a couple thousand 'moms' and 'pops.'"
+model_reply = "It turns out that cutting out the landlord can reduce rental costs by ~50%. Here's one cooperative model that offers a rebate to tenants for paying off the house: https://www.dissolvingequity.org"
 
 reddit = praw.Reddit('bot1')
 with open("comments_found.txt", "r") as f:
