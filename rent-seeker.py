@@ -23,6 +23,7 @@ searchTerms = ("the rent",
 exempt_terms = ["parents",
                 "currents",]
 subs = ['funny',
+        'renters',
         'internationalnews',
         'aboringdystopia',
         'lostgeneration',
@@ -75,7 +76,7 @@ subs = ['funny',
 
 comments_found = []
 housing_provider_reply = "Someone who buys housing at cost and returns it to the market for 2x the price isn't 'providing' anything."
-property_tax_reply = "Another good place to note that property tax usually only makes up around 10 percent of market-rate rent, compared to the ~fifty percent of rent that goes toward paying off the landlord's mortgage for them"
+property_tax_reply = "Property tax usually only makes up around 10 percent of market-rate rent, compared to the ~fifty percent of rent that goes toward paying off the landlord's mortgage for them"
 rent_control_reply = "Most economists might argue against rent control, but when you ask them to explain their argument it's most often 'most economists don't like rent control.' If you actually read the most commonly cited anti-rent-control papers, they show renter protections shielding tenants from displacement, reducing homelessness, and making housing affordable again -- and that if/when net rent increases result, they come about from scalpers going elsewhere in the market to gouge unprotected tenants *worse*."
 free_housing_reply = "Landlords love to accuse housing advocates of trying to 'give away free housing' every time they suggest that landlords should pay their own purchase price and not charge 2x the real cost of housing."
 GDP_reply = "Another good place to note that exploding rent costs are included in GDP, even though nothing is produced by scalping a home."
@@ -85,6 +86,7 @@ vienna_model_reply = "Vienna famously bought back swaths of scalped housing and 
 moms_pops_reply = "I don't think it matters much whether 10000 otherwise-affordable units are getting scalped for twice the price by two giant companies or by a couple thousand 'moms' and 'pops.'"
 model_reply = "It turns out that cutting out the landlord can reduce rental costs by ~50%. Here's one cooperative model that offers a rebate to tenants for paying off the house: https://www.dissolvingequity.org"
 supplydemand_reply = "Landlords: 'It's supply and demand, sweaty.' Tenants: 'Like when monopolists scalp the entire affordable supply of a good?' Landlords: 'No, not like that!!'"
+
 
 reddit = praw.Reddit('bot1')
 with open("comments_found.txt", "r") as f:
