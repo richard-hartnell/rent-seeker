@@ -85,8 +85,7 @@ property_rights_reply = "Landlords frequently argue that no laws can/should affe
 vienna_model_reply = "Vienna famously bought back swaths of scalped housing and successfully reduced rent by like 50 percent as a result. https://www.google.com/search?q=vienna+model"
 moms_pops_reply = "I don't think it matters much whether 10000 otherwise-affordable units are getting scalped for twice the price by two giant companies or by a couple thousand 'moms' and 'pops.'"
 model_reply = "It turns out that cutting out the landlord can reduce rental costs by ~50%. Here's one cooperative model that offers a rebate to tenants for paying off the house: https://www.dissolvingequity.org"
-supplydemand_reply = "Landlords: 'It's supply and demand, sweaty.' Tenants: 'Like when monopolists scalp the entire affordable supply of a good?' Landlords: 'No, not like that!!'"
-
+tax_landlords_reply = "Unfortunately, taxes and fees designed to discourage the mass scalping of housing usually just get passed on to tenants. IMO more blanket prohibition and/or public programs like the Vienna Model are key"
 
 reddit = praw.Reddit('bot1')
 with open("comments_found.txt", "r") as f:
@@ -134,7 +133,7 @@ while True:
                             print("4: " + free_housing_reply + "\n")
                             print("5: " + GDP_reply + "\n")
                             print("6: " + property_rights_reply + "\n")
-                            print("7: " + supplydemand_reply + "\n")
+                            print("7: " + tax_landlords_reply + "\n")
                             print("8: " + vienna_model_reply + "\n")
                             print("9: " + without_LLs_reply + "\n")
                             print("0: " + moms_pops_reply + "\n")
