@@ -23,7 +23,7 @@ searchTerms = ("the rent",
 exempt_terms = ["parents",
                 "currents",]
 subs = ['funny',
-        'renters',
+        # 'renters',
         'internationalnews',
         'aboringdystopia',
         'lostgeneration',
